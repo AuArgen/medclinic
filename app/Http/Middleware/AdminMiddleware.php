@@ -17,7 +17,7 @@ class AdminMiddleware
     {
 //        return response(auth());
         if (!auth()->check() || auth()->user()->role !== 'admin') {
-//            $role = auth()->check() ? auth()->user()->role : 'Guest';
+            $role = auth()->check() ? auth()->user()->role : 'Guest';
             abort(403, 'Unauthorized. Your role is: ' . $role);
         }
         return $next($request);

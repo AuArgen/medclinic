@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\DepartmentController as AdminDepartmentController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\ReportController;
@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\FloorController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MedicController;
+use App\Http\Controllers\Medic\MedicAppointmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 
@@ -19,15 +21,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-// Public routes for medics
+// Public routes
 Route::get('medics', [MedicController::class, 'index'])->name('medics.index');
 Route::get('medics/{medic}', [MedicController::class, 'show'])->name('medics.show');
+Route::get('departments', [DepartmentController::class, 'index'])->name('departments.index');
+Route::get('departments/{department}', [DepartmentController::class, 'show'])->name('departments.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Admin routes
     Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
         Route::resource('users', UserController::class);
-        Route::resource('departments', DepartmentController::class);
+        Route::resource('departments', AdminDepartmentController::class);
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
         Route::resource('schedules', ScheduleController::class);

@@ -12,7 +12,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-12">
                     <div>
-                        <img src="https://via.placeholder.com/600x400" alt="Our Clinic" class="rounded-lg shadow-lg animate-fade-in-left">
+                        <img src="https://ramsaydiagnostics.ru/blog/wp-content/uploads/2024/06/%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B5-%D0%BC%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2%D1%80%D0%B0%D1%87%D0%B0-scaled.jpeg" alt="Our Clinic" class="rounded-lg shadow-lg animate-fade-in-left">
                     </div>
                     <div>
                         <h2 class="text-3xl font-semibold text-gray-800 mb-4 animate-slide-in-right">Биздин миссия</h2>
@@ -31,7 +31,7 @@
                         </ul>
                     </div>
                     <div>
-                        <img src="https://via.placeholder.com/600x400" alt="Our Values" class="rounded-lg shadow-lg animate-fade-in-right">
+                        <img src="https://i0.wp.com/alakan.biz/wp-content/uploads/2018/01/vrach-e1515089310652.jpg?fit=720%2C479&ssl=1" alt="Our Values" class="rounded-lg shadow-lg animate-fade-in-right">
                     </div>
                 </div>
 

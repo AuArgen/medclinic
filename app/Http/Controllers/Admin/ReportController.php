@@ -7,14 +7,11 @@ use App\Models\Appointment;
 use App\Models\User;
 use App\Models\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
 class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('view-reports');
-
         $medics = User::where('role', 'medic')->get();
         $selectedMedicId = $request->input('medic_id');
         $startDate = $request->input('start_date');

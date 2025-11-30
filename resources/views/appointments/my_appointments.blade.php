@@ -37,11 +37,25 @@
                                         Статус
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Кошумча маалымат
+                                        Акыркы өзгөрүү
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
+                                @php
+                                    $statuses = [
+                                        'pending' => 'Текшерилүүдө',
+                                        'confirmed' => 'Тастыкталды',
+                                        'cancelled' => 'Жокко чыгарылды',
+                                        'completed' => 'Аяктады',
+                                    ];
+                                    $statusColors = [
+                                        'pending' => 'bg-yellow-100 text-yellow-800',
+                                        'confirmed' => 'bg-green-100 text-green-800',
+                                        'cancelled' => 'bg-red-100 text-red-800',
+                                        'completed' => 'bg-blue-100 text-blue-800',
+                                    ];
+                                @endphp
                                 @forelse ($appointments as $appointment)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
@@ -51,23 +65,18 @@
                                             {{ $appointment->medic->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ $appointment->appointment_date->format('Y-m-d') }}
+                                            {{ $appointment->appointment_date->format('d.m.Y') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             {{ $appointment->appointment_time->format('H:i') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ [
-                                                'pending' => 'bg-yellow-100 text-yellow-800',
-                                                'confirmed' => 'bg-green-100 text-green-800',
-                                                'cancelled' => 'bg-red-100 text-red-800',
-                                                'completed' => 'bg-blue-100 text-blue-800',
-                                            ][$appointment->status] }}">
-                                                {{ __($appointment->status) }}
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusColors[$appointment->status] ?? 'bg-gray-100 text-gray-800' }}">
+                                                {{ $statuses[$appointment->status] ?? $appointment->status }}
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ $appointment->notes ?? '--' }}
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $appointment->updated_at->diffForHumans() }}
                                         </td>
                                     </tr>
                                 @empty

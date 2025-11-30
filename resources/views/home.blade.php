@@ -38,7 +38,7 @@
                                 </h4>
                                 <p class="text-gray-600">{{ Str::limit($department->short_description, 150) ?? 'Маалымат жок.' }}</p>
                                 <div class="mt-4">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Көбүрөөк маалымат &rarr;</a>
+                                    <a href="{{ route('departments.show', $department->id) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Көбүрөөк маалымат &rarr;</a>
                                 </div>
                             </div>
                         @empty
@@ -50,8 +50,8 @@
                     <h3 class="text-3xl font-semibold text-gray-900 mb-6 animate-fade-in">Биздин мыкты врачтар</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                         @forelse ($medics as $medic)
-                            <div class="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up">
-                                <img src="https://via.placeholder.com/100" alt="{{ $medic->name }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-300">
+                            <div class="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up text-center">
+                                <img src="{{ $medic->avatar }}" alt="{{ $medic->name }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-300">
                                 <h4 class="text-xl font-semibold text-gray-800">{{ $medic->name }}</h4>
                                 <p class="text-indigo-600 text-sm mb-2">{{ $medic->department->name ?? 'Одделсиз' }}</p>
                                 <p class="text-gray-600 text-sm">{{ Str::limit($medic->bio, 80) ?? 'Маалымат жок.' }}</p>

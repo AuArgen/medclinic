@@ -59,6 +59,19 @@ class MessageController extends Controller
 
     public function store(Request $request, User $user)
     {
+        $currentUser = Auth::user();
+
+        // Authorization logic
+        if ($currentUser->role === 'customer' && $user->role !== 'medic') {
+            abort(403, 'Кардарлар медиктерге гана билдирүү жөнөтө алат.');
+        }
+        if ($currentUser->role === 'medic' && $user->role !== 'customer') {
+            abort(403, 'Медиктер кардарларга гана билдирүү жөнөтө алат.');
+        }
+        if ($currentUser->role === 'admin') {
+            abort(403, 'Админдер билдирүү жөнөтө албайт.');
+        }
+
         $request->validate([
             'message' => 'nullable|string|max:1000',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -74,7 +87,7 @@ class MessageController extends Controller
         }
 
         Message::create([
-            'sender_id' => Auth::id(),
+            'sender_id' => $currentUser->id,
             'receiver_id' => $user->id,
             'message' => $request->message,
             'image' => $imagePath,

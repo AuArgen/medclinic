@@ -6,16 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('view-users');
-
         $query = User::query();
 
         if ($request->has('search')) {
@@ -30,29 +28,33 @@ class UserController extends Controller
 
     public function create()
     {
-        Gate::authorize('edit-users');
         $departments = Department::all();
         return view('admin.users.create', compact('departments'));
     }
 
     public function store(Request $request)
     {
-        Gate::authorize('edit-users');
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'phone_number' => ['nullable', 'string', 'max:255'],
             'bio' => ['nullable', 'string'],
             'address' => ['nullable', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:6'], // Min 6 characters as requested
+            'password' => ['required', 'string', 'min:6'],
             'role' => ['required', 'in:admin,medic,customer'],
             'department_id' => ['nullable', 'exists:departments,id'],
         ]);
 
+        $avatarPath = null;
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+        }
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'avatar' => $avatarPath,
             'phone_number' => $request->phone_number,
             'bio' => $request->bio,
             'address' => $request->address,
@@ -66,18 +68,16 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        Gate::authorize('edit-users');
         $departments = Department::all();
         return view('admin.users.edit', compact('user', 'departments'));
     }
 
     public function update(Request $request, User $user)
     {
-        Gate::authorize('edit-users');
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'phone_number' => ['nullable', 'string', 'max:255'],
             'bio' => ['nullable', 'string'],
             'address' => ['nullable', 'string', 'max:255'],
@@ -86,9 +86,18 @@ class UserController extends Controller
             'department_id' => ['nullable', 'exists:departments,id'],
         ]);
 
+        $avatarPath = $user->getRawOriginal('avatar');
+        if ($request->hasFile('avatar')) {
+            if ($avatarPath) {
+                Storage::disk('public')->delete($avatarPath);
+            }
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+        }
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'avatar' => $avatarPath,
             'phone_number' => $request->phone_number,
             'bio' => $request->bio,
             'address' => $request->address,
@@ -107,11 +116,12 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        Gate::authorize('edit-users'); // Using edit-users gate for deletion as well
-
-        // Prevent deleting the last admin user
         if ($user->role === 'admin' && User::where('role', 'admin')->count() <= 1) {
             return redirect()->route('admin.users.index')->with('error', 'Акыркы админ колдонуучуну өчүрүүгө болбойт!');
+        }
+
+        if ($user->getRawOriginal('avatar')) {
+            Storage::disk('public')->delete($user->getRawOriginal('avatar'));
         }
 
         $user->delete();

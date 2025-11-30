@@ -5,29 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class DepartmentController extends Controller
 {
     public function index()
     {
-        Gate::authorize('manage-departments');
         $departments = Department::with('parent')->paginate(10);
         return view('admin.departments.index', compact('departments'));
     }
 
     public function create()
     {
-        Gate::authorize('manage-departments');
         $departments = Department::all(); // Get all departments for parent selection
         return view('admin.departments.create', compact('departments'));
     }
 
     public function store(Request $request)
     {
-        Gate::authorize('manage-departments');
-
         $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'nullable|string|max:255',
@@ -56,15 +51,12 @@ class DepartmentController extends Controller
 
     public function edit(Department $department)
     {
-        Gate::authorize('manage-departments');
         $departments = Department::where('id', '!=', $department->id)->get(); // Get all departments except the current one
         return view('admin.departments.edit', compact('department', 'departments'));
     }
 
     public function update(Request $request, Department $department)
     {
-        Gate::authorize('manage-departments');
-
         $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'nullable|string|max:255',
@@ -96,8 +88,6 @@ class DepartmentController extends Controller
 
     public function destroy(Department $department)
     {
-        Gate::authorize('manage-departments');
-
         // Check for related records before deleting (e.g., medics in this department)
         // For now, we'll just delete. We'll add this check later when we have medics.
 

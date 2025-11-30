@@ -27,4 +27,9 @@ class Department extends Model
     {
         return $this->hasMany(Department::class, 'parent_id');
     }
+
+    public function medics()
+    {
+        return $this->hasMany(User::class)->where('role', 'medic');
+    }
 }

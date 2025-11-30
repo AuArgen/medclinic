@@ -5,14 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
     public function index()
     {
-        Gate::authorize('manage-settings');
         $settings = [
             'site_name' => Setting::get('site_name', 'MedClinic'),
             'site_logo' => Setting::get('site_logo'),
@@ -22,8 +20,6 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-        Gate::authorize('manage-settings');
-
         $request->validate([
             'site_name' => 'required|string|max:255',
             'site_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
