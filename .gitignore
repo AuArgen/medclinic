@@ -22,3 +22,6 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/storage/app/public/departments
+/storage/app/public/messages
+/storage/app/public/settings
