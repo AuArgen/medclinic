@@ -14,6 +14,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\MedicController;
+use App\Http\Controllers\Medic\MedicAppointmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 
