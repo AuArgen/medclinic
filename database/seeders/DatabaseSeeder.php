@@ -14,23 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Only create an admin user if no users exist in the database
-        if (User::count() === 0) {
-            User::create([
-                'name' => 'Admin User',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('password'), // Simple password as requested
-                'role' => 'admin',
-            ]);
-        }
+        // The logic to create a default admin is now handled by the AssignAdminRole listener.
+        // You can add other seeders here if needed.
 
-        // You can uncomment this if you still want to create test users for development
-        // User::factory(10)->create();
-
-        // Remove or comment out the default test user creation if it's not needed
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        // For example:
+        // $this->call([
+        //     DepartmentSeeder::class,
         // ]);
     }
 }
