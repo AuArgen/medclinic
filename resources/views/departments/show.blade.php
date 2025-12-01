@@ -25,7 +25,7 @@
 
                 @if ($department->children->isNotEmpty())
                     <div class="mt-12">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Под-одделдер</h3>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Под-отделдер</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach ($department->children as $child)
                                 <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
@@ -38,7 +38,7 @@
 
                 @if ($department->medics->isNotEmpty())
                     <div class="mt-12">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Бул одделдин врачтары</h3>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Бул отделдин врачтары</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @foreach ($department->medics as $medic)
                                 <div class="bg-gray-100 p-4 rounded-lg shadow-sm text-center">

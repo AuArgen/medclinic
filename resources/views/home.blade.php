@@ -26,7 +26,7 @@
                     </div>
 
                     <!-- Departments Section -->
-                    <h3 class="text-3xl font-semibold text-gray-900 mb-6 animate-fade-in">Биздин одделдер</h3>
+                    <h3 class="text-3xl font-semibold text-gray-900 mb-6 animate-fade-in">Биздин отделдер</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                         @forelse ($departments as $department)
                             <div class="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 animate-fade-in-up">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p class="text-gray-500">Одделдер табылган жок.</p>
+                            <p class="text-gray-500">Отделдер табылган жок.</p>
                         @endforelse
                     </div>
 
@@ -53,7 +53,7 @@
                             <div class="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up text-center">
                                 <img src="{{ $medic->avatar }}" alt="{{ $medic->name }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-300">
                                 <h4 class="text-xl font-semibold text-gray-800">{{ $medic->name }}</h4>
-                                <p class="text-indigo-600 text-sm mb-2">{{ $medic->department->name ?? 'Одделсиз' }}</p>
+                                <p class="text-indigo-600 text-sm mb-2">{{ $medic->department->name ?? 'Отделсиз' }}</p>
                                 <p class="text-gray-600 text-sm">{{ Str::limit($medic->bio, 80) ?? 'Маалымат жок.' }}</p>
                                 <div class="mt-4">
                                     <a href="{{ route('medics.show', $medic->id) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Профилин көрүү &rarr;</a>

@@ -78,9 +78,9 @@
 
                         <!-- Department (only for medic role) -->
                         <div class="mt-4" id="department-field" style="display: {{ old('role', $user->role) === 'medic' ? 'block' : 'none' }};">
-                            <x-input-label for="department_id" :value="__('Оддел')" />
+                            <x-input-label for="department_id" :value="__('Отдел')" />
                             <select id="department_id" name="department_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option value="">-- Оддел тандоо --</option>
+                                <option value="">-- Отдел тандоо --</option>
                                 @foreach ($departments as $department)
                                     <option value="{{ $department->id }}" {{ old('department_id', $user->department_id) == $department->id ? 'selected' : '' }}>{{ $department->name }}</option>
                                 @endforeach

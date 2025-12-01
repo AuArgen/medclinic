@@ -46,7 +46,7 @@ class DepartmentController extends Controller
             'parent_id' => $request->parent_id,
         ]);
 
-        return redirect()->route('admin.departments.index')->with('success', 'Оддел ийгиликтүү кошулду!');
+        return redirect()->route('admin.departments.index')->with('success', 'Отдел ийгиликтүү кошулду!');
     }
 
     public function edit(Department $department)
@@ -83,7 +83,7 @@ class DepartmentController extends Controller
             'parent_id' => $request->parent_id,
         ]);
 
-        return redirect()->route('admin.departments.index')->with('success', 'Оддел ийгиликтүү жаңыртылды!');
+        return redirect()->route('admin.departments.index')->with('success', 'Отдел ийгиликтүү жаңыртылды!');
     }
 
     public function destroy(Department $department)
@@ -96,6 +96,6 @@ class DepartmentController extends Controller
         }
         $department->delete();
 
-        return redirect()->route('admin.departments.index')->with('success', 'Оддел ийгиликтүү өчүрүлдү!');
+        return redirect()->route('admin.departments.index')->with('success', 'Отдел ийгиликтүү өчүрүлдү!');
     }
 }

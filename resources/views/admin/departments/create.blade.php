@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Жаңы оддел кошуу') }}
+            {{ __('Жаңы отдел кошуу') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
-                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Жаңы оддел түзүү</h3>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Жаңы отдел түзүү</h3>
 
                 <form method="POST" action="{{ route('admin.departments.store') }}" enctype="multipart/form-data" class="space-y-6">
                     @csrf
 
                     <!-- Name -->
                     <div>
-                        <x-input-label for="name" :value="__('Одделдин аталышы')" />
+                        <x-input-label for="name" :value="__('Отделдин аталышы')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
@@ -29,9 +29,9 @@
 
                     <!-- Parent Department -->
                     <div>
-                        <x-input-label for="parent_id" :value="__('Негизги оддел (милдеттүү эмес)')" />
+                        <x-input-label for="parent_id" :value="__('Негизги отдел (милдеттүү эмес)')" />
                         <select id="parent_id" name="parent_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                            <option value="">-- Негизги оддел жок --</option>
+                            <option value="">-- Негизги отдел жок --</option>
                             @foreach ($departments as $dept)
                                 <option value="{{ $dept->id }}" {{ old('parent_id') == $dept->id ? 'selected' : '' }}>{{ $dept->name }}</option>
                             @endforeach

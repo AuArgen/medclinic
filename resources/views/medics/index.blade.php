@@ -17,7 +17,7 @@
                                 <div class="flex flex-col items-center text-center">
                                     <img src="{{ $medic->avatar }}" alt="{{ $medic->name }}" class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-white shadow-lg">
                                     <h4 class="text-xl font-semibold text-gray-800">{{ $medic->name }}</h4>
-                                    <p class="text-indigo-600">{{ $medic->department->name ?? 'Одделсиз' }}</p>
+                                    <p class="text-indigo-600">{{ $medic->department->name ?? 'Отделсиз' }}</p>
                                     <p class="mt-2 text-gray-600 text-sm">{{ Str::limit($medic->bio, 100) ?? 'Маалымат жок.' }}</p>
                                     <a href="{{ route('medics.show', $medic->id) }}" class="mt-4 inline-block bg-indigo-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Профилин көрүү</a>
                                 </div>

@@ -23,7 +23,7 @@
                         {{ __('Врачтар') }}
                     </x-nav-link>
                     <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.index')">
-                        {{ __('Одделдер') }}
+                        {{ __('Отделдер') }}
                     </x-nav-link>
                     <x-nav-link :href="route('documentation')" :active="request()->routeIs('documentation')">
                         {{ __('Документация') }}
@@ -47,7 +47,7 @@
                                         {{ __('Колдонуучулар') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link :href="route('admin.departments.index')">
-                                        {{ __('Одделдер') }}
+                                        {{ __('Отделдер') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link :href="route('admin.schedules.index')">
                                         {{ __('Расписаниелер') }}
@@ -150,7 +150,7 @@
                 {{ __('Врачтар') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.index')">
-                {{ __('Одделдер') }}
+                {{ __('Отделдер') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('documentation')" :active="request()->routeIs('documentation')">
                 {{ __('Документация') }}
@@ -160,7 +160,7 @@
                     {{ __('Колдонуучулар') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.departments.index')" :active="request()->routeIs('admin.departments.index')">
-                    {{ __('Одделдер') }}
+                    {{ __('Отделдер') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.schedules.index')">
                     {{ __('Расписаниелер') }}

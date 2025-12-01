@@ -14,7 +14,7 @@
                     </div>
                     <div class="flex-grow text-center md:text-left">
                         <h1 class="text-4xl font-extrabold text-gray-900 mb-2">{{ $medic->name }}</h1>
-                        <p class="text-xl text-indigo-600 mb-4">{{ $medic->department->name ?? 'Одделсиз' }}</p>
+                        <p class="text-xl text-indigo-600 mb-4">{{ $medic->department->name ?? 'Отделсиз' }}</p>
                         <p class="text-gray-700 leading-relaxed mb-4">{{ $medic->bio ?? 'Бул врач жөнүндө маалымат жок.' }}</p>
                         <div class="space-y-2 text-lg text-gray-700">
                             <p><i class="fas fa-envelope text-indigo-600 mr-2"></i>Email: {{ $medic->email }}</p>
