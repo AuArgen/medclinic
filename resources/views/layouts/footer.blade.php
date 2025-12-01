@@ -14,6 +14,8 @@
                     <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white">Башкы бет</a></li>
                     <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-white">Биз жөнүндө</a></li>
                     <li><a href="{{ route('medics.index') }}" class="text-gray-400 hover:text-white">Врачтар</a></li>
+                    <li><a href="{{ route('departments.index') }}" class="text-gray-400 hover:text-white">Одделдер</a></li>
+                    <li><a href="{{ route('documentation') }}" class="text-gray-400 hover:text-white">Документация</a></li>
                     <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white">Байланыш</a></li>
                 </ul>
             </div>

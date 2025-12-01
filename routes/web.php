@@ -12,14 +12,15 @@ use App\Http\Controllers\Admin\FloorController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\MedicController;
-use App\Http\Controllers\Medic\MedicAppointmentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 
 // Public routes
 Route::get('medics', [MedicController::class, 'index'])->name('medics.index');

@@ -22,11 +22,11 @@
                     <x-nav-link :href="route('medics.index')" :active="request()->routeIs('medics.index')">
                         {{ __('Врачтар') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('Биз жөнүндө') }}
+                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.index')">
+                        {{ __('Одделдер') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
-                        {{ __('Байланыш') }}
+                    <x-nav-link :href="route('documentation')" :active="request()->routeIs('documentation')">
+                        {{ __('Документация') }}
                     </x-nav-link>
                     @if (Auth::check() && Auth::user()->role === 'admin')
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -149,11 +149,11 @@
             <x-responsive-nav-link :href="route('medics.index')" :active="request()->routeIs('medics.index')">
                 {{ __('Врачтар') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                {{ __('Биз жөнүндө') }}
+            <x-responsive-nav-link :href="route('departments.index')" :active="request()->routeIs('departments.index')">
+                {{ __('Одделдер') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
-                {{ __('Байланыш') }}
+            <x-responsive-nav-link :href="route('documentation')" :active="request()->routeIs('documentation')">
+                {{ __('Документация') }}
             </x-responsive-nav-link>
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
